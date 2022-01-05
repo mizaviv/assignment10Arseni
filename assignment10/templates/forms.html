@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- currentPage: 1 - main form !-->
+
+<!-- common variables -->
+{% set pages = [
+{'id': 1, 'name': "assignment10", 'title': "USERS..."}
+]
+%}
+<html lang="en">
+<head>
+    <title>Register Form</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('assignment10.static', filename='js/users_crud_actions.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('assignment10.static', filename='css/forms.css') }}"> <!--לינק לעמוד CSS-->
+    <title>{% block title%}{% endblock %}</title>
+</head>
+<body>
+{% include 'common_header.html' %}
+<h1>{% block header %}
+    {% endblock %}
+</h1>
+{% block main_context %}
+{% endblock %}
+</body>
+</html>

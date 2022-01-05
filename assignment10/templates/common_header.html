@@ -1,0 +1,6 @@
+
+<ul>
+    {% for page in pages %}
+        <li><a href="{{page['name']}}" class="{{'selected' if page['id']==currentPage}} else ''">{{page['title']}}</a></li>
+    {% endfor %}
+</ul>

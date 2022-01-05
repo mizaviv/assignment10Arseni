@@ -1,0 +1,71 @@
+{% extends "forms.html" %}
+{% set currentPage = 1 %}
+{% block title %}
+Search user
+{% endblock %}
+{% block logout %}
+{% if session['username'] %}
+<form name="form1" action="/logout" method="post">
+    <input type="submit" name="logout" value="logout">
+</form>
+<br><br>
+{% endif %}
+{% endblock %}
+{% block main_context %}
+<form style="display:none;" id="form_add" visibility="hidden" action="javascript:addUser();">
+    <p>Fill data for adding a new user:</p>
+    <lable for="username">User Name:</lable>
+    <input name="username" type="text" placeholder="Name">
+    <br><br>
+    <lable for="email">E-Mail:</lable>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="email" name="email" placeholder="Email">
+    <br>
+    <br>
+    <lable for="password">User Name:</lable>
+    <input name="password" type="password" placeholder="Password">
+    <br><br>
+    <input type="submit" value="&#x2713;" title="confirm add">
+    <input type="button" value="&#x2715;" title="close" onclick="closeAdd()">
+    <br>
+    <br>
+</form>
+<br><br>
+<form style="display:none;" id="form_update" action="javascript:updateUser();">
+    <p>Fill data for updating an existing user:</p>
+    <lable for="username">User Name:</lable>
+    <input name="username" type="text" readonly>
+    <br><br>
+    <lable for="email">E-Mail:</lable>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="email" name="email" placeholder="Email">
+    <br>
+    <br>
+    <lable for="password">User Name:</lable>
+    <input name="password" type="password" placeholder="Password">
+    <br><br>
+    <input type="submit" value="&#x2713;" title="confirm update">
+    <input type="button" value="&#x2715;" title="close" onclick="closeUpdate()">
+    <br>
+    <br>
+</form>
+<br><br>
+<table class="center">
+    <tr>
+        <th>#</th>
+        <th>User Name</th>
+        <th>EMail</th>
+        <th title="insert" onclick="showAdd()">&#x271A;</th>
+     </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{user['username']}}</td>
+        <td>{{user['email']}}</td>
+        <td title="update" onclick="showUpdate('{{user['username']}}', '{{user['email']}}')">&#x270E;</td>
+        <td title="delete" onclick="deleteUser('{{user['username']}}')">&#x2717;</td>
+    </tr>
+    {% endfor %}
+</table>
+<br><br>
+{% endblock %}
